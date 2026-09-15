@@ -27,5 +27,5 @@ public partial class Producto
 
     public virtual ICollection<Historialinventario> Historialinventarios { get; set; } = new List<Historialinventario>();
 
-    public virtual Proveedore Proveedor { get; set; } = null!;
+    public virtual Proveedore? Proveedor { get; set; } = null!;
 }
