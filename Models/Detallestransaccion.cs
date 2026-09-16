@@ -15,7 +15,7 @@ public partial class Detallestransaccion
 
     public decimal PrecioUnitario { get; set; }
 
-    public virtual Producto Producto { get; set; } = null!;
+    public virtual Producto? Producto { get; set; } = null!;
 
-    public virtual Transaccione Transaccion { get; set; } = null!;
+    public virtual Transaccione? Transaccion { get; set; } = null!;
 }
