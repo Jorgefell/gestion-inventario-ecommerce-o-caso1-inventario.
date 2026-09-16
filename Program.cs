@@ -6,8 +6,12 @@ using Casos1.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Agregar controladores
-builder.Services.AddControllers();
-
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler =
+            System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
 // Configurar Entity Framework Core con MySQL
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySQL(
@@ -16,6 +20,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IProductoService, ProductoService>();
+builder.Services.AddScoped<IProveedorService, ProveedorService>();
+builder.Services.AddScoped<ITransaccionService, TransaccionService>();
+builder.Services.AddScoped<IPedidoProveedorService, PedidoProveedorService>();
+builder.Services.AddScoped<IDetallePedidoProveedorService, DetallePedidoProveedorService>();
+builder.Services.AddScoped<IReporteService, ReporteService>();
+builder.Services.AddScoped<
+    IHistorialInventarioService,
+    HistorialInventarioService>();
 
 // Agregar Swagger
 builder.Services.AddEndpointsApiExplorer();
